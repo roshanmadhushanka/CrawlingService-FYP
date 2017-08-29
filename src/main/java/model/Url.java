@@ -10,6 +10,10 @@ public class Url {
 
     }
 
+    public Url(String url){
+        this.url = url;
+    }
+
     public void setUrl(String url){
         this.url = url;
     }

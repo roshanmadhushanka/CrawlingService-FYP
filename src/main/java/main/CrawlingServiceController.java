@@ -1,5 +1,6 @@
 package main;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gargoylesoftware.htmlunit.BrowserVersion;
@@ -26,7 +27,7 @@ import java.util.List;
 @RestController
 public class CrawlingServiceController {
     @RequestMapping(value = "/crawl", method = RequestMethod.POST)
-    public ResponseEntity<Version> crawl(@RequestBody Url url){
+    public ResponseEntity<String> crawl(@RequestBody Url url) {
         HtmlUnitDriver driver = new HtmlUnitDriver(BrowserVersion.FIREFOX_45);
 
         // Allow to load javascripts
@@ -48,7 +49,16 @@ public class CrawlingServiceController {
         VersionDAO versionDAO = new VersionDAO();
         versionDAO.create(version);
 
-        return new ResponseEntity<Version>(version, HttpStatus.OK);
+        // Convert version to JSON string
+        ObjectMapper objectMapper = new ObjectMapper();
+        String response = null;
+        try {
+            response = objectMapper.writeValueAsString(version);
+        } catch (JsonProcessingException e) {
+
+        }
+
+        return new ResponseEntity<String>(response, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/getVersions", method = RequestMethod.POST)
@@ -58,18 +68,19 @@ public class CrawlingServiceController {
         return new ResponseEntity<List<Version>>(versionList, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/test", method = RequestMethod.POST)
-    public ResponseEntity<String> test(@RequestBody User user) throws IOException {
-        RestTemplate restTemplate = new RestTemplate();
-        String response = restTemplate.postForObject("http://localhost:7175/getUser", user, String.class);
-
-        ObjectMapper mapper = new ObjectMapper();
-        JavaType type = mapper.getTypeFactory().constructCollectionType(List.class, User.class);
-        List<User> userList = mapper.readValue(response, type);
-        System.out.println(userList.toString());
-
-        return new ResponseEntity<String>(response, HttpStatus.OK);
-    }
+//    @RequestMapping(value = "/test", method = RequestMethod.POST)
+//    public ResponseEntity<String> test(@RequestBody User user) throws IOException {
+//
+//        RestTemplate restTemplate = new RestTemplate();
+//        String response = restTemplate.postForObject("http://localhost:7175/getUser", user, String.class);
+//
+//        // Result convert to a JSON string
+//        ObjectMapper mapper = new ObjectMapper();
+//        JavaType type = mapper.getTypeFactory().constructCollectionType(List.class, User.class);
+//        List<User> userList = mapper.readValue(response, type);
+//
+//        return new ResponseEntity<String>(response, HttpStatus.OK);
+//    }
 
 
 }
