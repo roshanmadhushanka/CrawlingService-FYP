@@ -1,0 +1,8 @@
+db/MongoConnector.class
+db/VersionDAO.class
+model/Url.class
+exception/RequiredAttributeMissingException.class
+model/User.class
+main/CrawlingServiceApp.class
+model/Version.class
+main/CrawlingServiceController.class
