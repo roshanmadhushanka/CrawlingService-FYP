@@ -5,7 +5,6 @@ import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import model.Version;
 import org.bson.Document;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +14,7 @@ import java.util.List;
 
 public class VersionDAO {
     private MongoClient mongoClient;
-    private MongoCollection userCollection;
+    private MongoCollection versionCollection;
 
     public static Document toDocument(Version version){
         Document versionObj = new Document();
@@ -36,19 +35,19 @@ public class VersionDAO {
 
     public VersionDAO() {
         mongoClient = MongoConnector.getMongoClient();
-        userCollection = mongoClient.getDatabase("ozious").getCollection("version");
+        versionCollection = mongoClient.getDatabase("ozious").getCollection("version");
     }
 
     public void create(Version version){
         Document versionObj = toDocument(version);
-        userCollection.insertOne(versionObj);
+        versionCollection.insertOne(versionObj);
     }
 
     public List<Version> read(Version version){
         Document versionObject = toDocument(version);
 
         List<Version> versionList = new ArrayList<>();
-        FindIterable<Document> cursor = userCollection.find(versionObject);
+        FindIterable<Document> cursor = versionCollection.find(versionObject);
         for (Document obj: cursor
                 ) {
             Version versionObj = new Version();
@@ -60,8 +59,23 @@ public class VersionDAO {
         return versionList;
     }
 
-    public void delete(Version version){
+    public List<Version> readTimeStamp(Version version){
+        Document versionObject = toDocument(version);
 
+        List<Version> versionList = new ArrayList<>();
+        FindIterable<Document> cursor = versionCollection.find(versionObject);
+        for (Document obj: cursor
+                ) {
+            Version versionObj = new Version();
+            versionObj.setTimestamp(obj.getDate("timestamp"));
+            versionList.add(versionObj);
+        }
+        return versionList;
+    }
+
+    public void delete(Version version){
+        Document versionObject = toDocument(version);
+        versionCollection.deleteMany(versionObject);
     }
 
 }

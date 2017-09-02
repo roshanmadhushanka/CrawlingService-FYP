@@ -1,12 +1,10 @@
 package main;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gargoylesoftware.htmlunit.BrowserVersion;
 import db.VersionDAO;
 import model.Url;
-import model.User;
 import model.Version;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.springframework.http.HttpStatus;
@@ -15,9 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
-
-import java.io.IOException;
 import java.util.List;
 
 /**
@@ -28,10 +23,16 @@ import java.util.List;
 public class CrawlingServiceController {
     @RequestMapping(value = "/crawl", method = RequestMethod.POST)
     public ResponseEntity<String> crawl(@RequestBody Url url) {
+        /*
+            Crawl and save to version repository
+         */
+
+        String response = null;
+
         HtmlUnitDriver driver = new HtmlUnitDriver(BrowserVersion.FIREFOX_45);
 
-        // Allow to load javascripts
-        driver.setJavascriptEnabled(true);
+        // Allow to load JavaScripts
+        // driver.setJavascriptEnabled(true);
 
         // Navigate to URL
         driver.get(url.toString());
@@ -49,9 +50,9 @@ public class CrawlingServiceController {
         VersionDAO versionDAO = new VersionDAO();
         versionDAO.create(version);
 
-        // Convert version to JSON string
+        // Convert result in to JSON string
         ObjectMapper objectMapper = new ObjectMapper();
-        String response = null;
+
         try {
             response = objectMapper.writeValueAsString(version);
         } catch (JsonProcessingException e) {
@@ -61,11 +62,63 @@ public class CrawlingServiceController {
         return new ResponseEntity<String>(response, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/getVersions", method = RequestMethod.POST)
-    public ResponseEntity<List<Version>> getVersion(@RequestBody Version version){
+    @RequestMapping(value = "/getVersion", method = RequestMethod.POST)
+    public ResponseEntity<String> getVersion(@RequestBody Version version){
+        /*
+            Get versions from version repository
+         */
+
+        String response = null;
+
+        // Load versions
         VersionDAO versionDAO = new VersionDAO();
         List<Version> versionList = versionDAO.read(version);
-        return new ResponseEntity<List<Version>>(versionList, HttpStatus.OK);
+
+        // Convert result into JSON
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            response = objectMapper.writeValueAsString(versionList);
+        } catch (JsonProcessingException e) {
+
+        }
+
+        return new ResponseEntity<String>(response, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/getTimeStamp", method = RequestMethod.POST)
+    public ResponseEntity<String> getVersionMetaData(@RequestBody Version version){
+        /*
+            Get timestamps
+         */
+
+        String response = null;
+
+        // Load timestamps
+        VersionDAO versionDAO = new VersionDAO();
+        List<Version> versionList = versionDAO.readTimeStamp(version);
+
+        // Convert result into JSON
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            response = objectMapper.writeValueAsString(versionList);
+        } catch (JsonProcessingException e) {
+
+        }
+
+        return new ResponseEntity<String>(response, HttpStatus.OK);
+    }
+
+    public ResponseEntity<String> removeVersion(@RequestBody Version version){
+        /*
+            Remove version from the version repository
+         */
+
+        String response = null;
+
+        VersionDAO versionDAO = new VersionDAO();
+
+
+        return new ResponseEntity<String>(response, HttpStatus.OK);
     }
 
 //    @RequestMapping(value = "/test", method = RequestMethod.POST)
