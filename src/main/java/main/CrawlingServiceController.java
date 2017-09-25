@@ -1,10 +1,12 @@
 package main;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gargoylesoftware.htmlunit.BrowserVersion;
 import db.VersionDAO;
 import model.Url;
+import model.User;
 import model.Version;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.springframework.http.HttpStatus;
@@ -13,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -116,24 +120,25 @@ public class CrawlingServiceController {
         String response = null;
 
         VersionDAO versionDAO = new VersionDAO();
-
+        versionDAO.delete(version);
+        response = "Success";
 
         return new ResponseEntity<String>(response, HttpStatus.OK);
     }
 
-//    @RequestMapping(value = "/test", method = RequestMethod.POST)
-//    public ResponseEntity<String> test(@RequestBody User user) throws IOException {
-//
-//        RestTemplate restTemplate = new RestTemplate();
-//        String response = restTemplate.postForObject("http://localhost:7175/getUser", user, String.class);
-//
-//        // Result convert to a JSON string
-//        ObjectMapper mapper = new ObjectMapper();
-//        JavaType type = mapper.getTypeFactory().constructCollectionType(List.class, User.class);
-//        List<User> userList = mapper.readValue(response, type);
-//
-//        return new ResponseEntity<String>(response, HttpStatus.OK);
-//    }
+    @RequestMapping(value = "/test", method = RequestMethod.POST)
+    public ResponseEntity<String> test(@RequestBody User user) throws IOException {
+
+        RestTemplate restTemplate = new RestTemplate();
+        String response = restTemplate.postForObject("http://localhost:7175/getUser", user, String.class);
+
+        // Result convert to a JSON string
+        ObjectMapper mapper = new ObjectMapper();
+        JavaType type = mapper.getTypeFactory().constructCollectionType(List.class, User.class);
+        List<User> userList = mapper.readValue(response, type);
+
+        return new ResponseEntity<String>(response, HttpStatus.OK);
+    }
 
 
 }

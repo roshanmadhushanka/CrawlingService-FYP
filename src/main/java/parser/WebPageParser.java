@@ -6,10 +6,9 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Queue;
+import java.util.*;
 import java.util.concurrent.ArrayBlockingQueue;
+import java.util.stream.IntStream;
 
 /**
  * Created by roshanalwis on 8/29/17.
@@ -59,5 +58,57 @@ public class WebPageParser {
         }
 
         return elementMap;
+    }
+
+    public HashMap<String, ArrayList<String>> list(String htmlString){
+        return list(toDocument(htmlString));
+    }
+
+    public HashMap<String, ArrayList<ArrayList<String>>> extendedList(Document document){
+        HashMap<String, ArrayList<String>> normalList = list(document);
+        return parallelTokenize(normalList);
+    }
+
+    public HashMap<String, ArrayList<ArrayList<String>>> extendedList(String htmlString){
+        HashMap<String, ArrayList<String>> normalList = list(toDocument(htmlString));
+        return parallelTokenize(normalList);
+    }
+
+    private HashMap<String, ArrayList<ArrayList<String>>> parallelTokenize(HashMap<String,
+            ArrayList<String>> normalList) {
+        /*
+            Tokenize parallel
+         */
+
+        HashMap<String, ArrayList<ArrayList<String>>> extendedList = new HashMap<>();
+
+        for (String key: normalList.keySet()) {
+            ArrayList<String> tagContent = normalList.get(key);
+            ArrayList<ArrayList<String>> extendedTagContent = new ArrayList<>();
+
+            for(int i=0; i<tagContent.size(); i++){
+                extendedTagContent.add(tokenize(tagContent.get(i)));
+            }
+
+            extendedList.put(key, extendedTagContent);
+        }
+
+        return extendedList;
+    }
+
+    private ArrayList<String> tokenize(String text){
+        /*
+            Tokenize sentence by removing special characters.
+         */
+
+        ArrayList<String> wordVec = new ArrayList<>();
+        String x = text.replaceAll("[|;:,'\".]", " ");
+        StringTokenizer url = new StringTokenizer(x, " ");
+
+        while (url.hasMoreTokens()) {
+            wordVec.add(url.nextToken());
+        }
+
+        return wordVec;
     }
 }

@@ -1,18 +1,26 @@
 package db;
 
 import com.mongodb.MongoClient;
+import com.mongodb.MongoSocketOpenException;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import model.Version;
 import org.bson.Document;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * Created by roshanalwis on 8/26/17.
  */
 
 public class VersionDAO {
+    // Logging info
+    private final static Logger LOGGER = Logger.getLogger(VersionDAO.class.getName());
+    private final static String DB_ERROR = "Cannot connect to the database";
+    private final static String ERROR = "Error";
+
+    // Class parameters
     private MongoClient mongoClient;
     private MongoCollection versionCollection;
 
@@ -35,27 +43,48 @@ public class VersionDAO {
 
     public VersionDAO() {
         mongoClient = MongoConnector.getMongoClient();
-        versionCollection = mongoClient.getDatabase("ozious").getCollection("version");
+        try {
+            versionCollection = mongoClient.getDatabase("ozious").getCollection("version");
+        } catch (MongoSocketOpenException e) {
+            LOGGER.severe(DB_ERROR);
+        } catch (Exception e) {
+            LOGGER.severe(ERROR);
+        }
+
     }
 
     public void create(Version version){
         Document versionObj = toDocument(version);
-        versionCollection.insertOne(versionObj);
+        try {
+            versionCollection.insertOne(versionObj);
+        }  catch (MongoSocketOpenException e) {
+            LOGGER.severe(DB_ERROR);
+        } catch (Exception e) {
+            LOGGER.severe(ERROR);
+        }
     }
 
     public List<Version> read(Version version){
         Document versionObject = toDocument(version);
 
         List<Version> versionList = new ArrayList<>();
-        FindIterable<Document> cursor = versionCollection.find(versionObject);
-        for (Document obj: cursor
-                ) {
-            Version versionObj = new Version();
-            versionObj.setUrl(obj.getString("url"));
-            versionObj.setTimestamp(obj.getDate("timestamp"));
-            versionObj.setContent(obj.getString("content"));
-            versionList.add(versionObj);
+
+        try {
+            FindIterable<Document> cursor = versionCollection.find(versionObject);
+            for (Document obj: cursor
+                    ) {
+                Version versionObj = new Version();
+                versionObj.setUrl(obj.getString("url"));
+                versionObj.setTimestamp(obj.getDate("timestamp"));
+                versionObj.setContent(obj.getString("content"));
+                versionList.add(versionObj);
+            }
+        } catch (MongoSocketOpenException e) {
+            LOGGER.severe(DB_ERROR);
+        } catch (Exception e) {
+            LOGGER.severe(ERROR);
         }
+
         return versionList;
     }
 
@@ -63,19 +92,33 @@ public class VersionDAO {
         Document versionObject = toDocument(version);
 
         List<Version> versionList = new ArrayList<>();
-        FindIterable<Document> cursor = versionCollection.find(versionObject);
-        for (Document obj: cursor
-                ) {
-            Version versionObj = new Version();
-            versionObj.setTimestamp(obj.getDate("timestamp"));
-            versionList.add(versionObj);
+
+        try {
+            FindIterable<Document> cursor = versionCollection.find(versionObject);
+            for (Document obj: cursor
+                    ) {
+                Version versionObj = new Version();
+                versionObj.setTimestamp(obj.getDate("timestamp"));
+                versionList.add(versionObj);
+            }
+        } catch (MongoSocketOpenException e) {
+            LOGGER.severe(DB_ERROR);
+        } catch (Exception e) {
+            LOGGER.severe(ERROR);
         }
+
         return versionList;
     }
 
     public void delete(Version version){
         Document versionObject = toDocument(version);
-        versionCollection.deleteMany(versionObject);
+        try {
+            versionCollection.deleteMany(versionObject);
+        } catch (MongoSocketOpenException e) {
+            LOGGER.severe(DB_ERROR);
+        } catch (Exception e) {
+            LOGGER.severe(ERROR);
+        }
     }
 
 }
