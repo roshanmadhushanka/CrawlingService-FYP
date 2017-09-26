@@ -3,10 +3,8 @@ package parser;
 import db.VersionDAO;
 import evaluateion.Evaluator;
 import model.Version;
-import org.jsoup.nodes.Document;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -32,7 +30,7 @@ public class ParserTest {
         WebPageParser webPageParser = new WebPageParser();
         HashMap<String, ArrayList<ArrayList<String>>> version1 = webPageParser.extendedList(versions.get(0).getContent());
         HashMap<String, ArrayList<ArrayList<String>>> version2 = webPageParser.extendedList(versions.get(3).getContent());
-        Evaluator.diffExt(version1, version2);
+        Evaluator.diff(version1, version2);
         System.out.println("Done");
 
 

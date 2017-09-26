@@ -83,39 +83,54 @@ public class Evaluator {
         return result;
     }
 
-    public static void cosineSimilarityExt(ArrayList<ArrayList<String>> extList1, ArrayList<ArrayList<String>> extList2) {
+    private static int[] tagContentDiff(ArrayList<ArrayList<String>> oldVersion,
+                                        ArrayList<ArrayList<String>> newVersion) {
 
-        IntStream.range(0, extList1.size()).parallel().forEach((int i) ->{
-            for(int j=0; j<extList2.size(); j++){
-                cosineSimilarity(extList1.get(i), extList2.get(j));
+        /*
+            Compare new version with old version by iterating through content of new version
+         */
+
+        final int[] count = {0, 0};
+
+        IntStream.range(0, oldVersion.size()).parallel().forEach((int i) ->{
+
+            boolean found = false;
+
+            for (int j = 0; j < newVersion.size(); j++) {
+                if(cosineSimilarity(oldVersion.get(i), newVersion.get(j)) > 0.9){
+                    // If almost similar content found
+
+                    // Match count
+                    count[0]++;
+                    found = true;
+                    break;
+                }
+            }
+
+            if(!found){
+                // Mismatch count
+                count[1]++;
             }
         });
+
+        return count;
     }
 
-    public static void diff(HashMap<String, ArrayList<String>> version1,
-                            HashMap<String, ArrayList<String>> version2) {
+    public static void diff(HashMap<String, ArrayList<ArrayList<String>>> oldVersion,
+                            HashMap<String, ArrayList<ArrayList<String>>> newVersion) {
 
-        Set<String> tagSet1 = version1.keySet();
-        Set<String> tagSet2 = version1.keySet();
-
-        ArrayList<String> commonTags = getUnion(new ArrayList<String>(tagSet1), new ArrayList<String>(tagSet2));
-        for(String tag: commonTags) {
-            // System.out.println(tag + ":" + cosineSimilarity(version1.get(tag), version2.get(tag)));
-        }
-    }
-
-    public static void diffExt(HashMap<String, ArrayList<ArrayList<String>>> version1,
-                            HashMap<String, ArrayList<ArrayList<String>>> version2) {
-        Set<String> tagSet1 = version1.keySet();
-        Set<String> tagSet2 = version2.keySet();
+        Set<String> tagSet1 = oldVersion.keySet();
+        Set<String> tagSet2 = newVersion.keySet();
 
         ArrayList<String> commonTags = getUnion(new ArrayList<String>(tagSet1), new ArrayList<String>(tagSet2));
 
         long startTime = System.nanoTime();
+
         for(String tag: commonTags) {
             System.out.println(tag);
-            cosineSimilarityExt(version1.get(tag), version2.get(tag));
+            System.out.println(Arrays.toString(tagContentDiff(oldVersion.get(tag), newVersion.get(tag))));
         }
+
         long endTime = System.nanoTime();
         System.out.println("Took "+(endTime - startTime) + " ns");
     }
