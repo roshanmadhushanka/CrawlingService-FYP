@@ -112,6 +112,7 @@ public class CrawlingServiceController {
         return new ResponseEntity<String>(response, HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/removeVersion", method = RequestMethod.POST)
     public ResponseEntity<String> removeVersion(@RequestBody Version version){
         /*
             Remove version from the version repository
@@ -122,6 +123,13 @@ public class CrawlingServiceController {
         VersionDAO versionDAO = new VersionDAO();
         versionDAO.delete(version);
         response = "Success";
+
+        return new ResponseEntity<String>(response, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/getDifference", method = RequestMethod.POST)
+    public ResponseEntity<String> getDifference(){
+        String response = null;
 
         return new ResponseEntity<String>(response, HttpStatus.OK);
     }

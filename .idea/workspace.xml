@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f959d3ba-1199-4a3d-90fe-9c36cfea6243" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/evaluateion/Evaluator.class" afterPath="$PROJECT_DIR$/target/classes/evaluateion/Evaluator.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/evaluateion/Evaluator.java" afterPath="$PROJECT_DIR$/src/main/java/evaluateion/Evaluator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/main/CrawlingServiceController.java" afterPath="$PROJECT_DIR$/src/main/java/main/CrawlingServiceController.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -18,24 +17,14 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Evaluator.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Evaluator.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/evaluateion/Evaluator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="596">
-              <caret line="142" column="111" lean-forward="false" selection-start-line="142" selection-start-column="111" selection-end-line="142" selection-end-column="111" />
+            <state relative-caret-position="429">
+              <caret line="85" column="39" lean-forward="false" selection-start-line="85" selection-start-column="39" selection-end-line="85" selection-end-column="39" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="25" selection-end-column="21" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -53,30 +42,35 @@
       <file leaf-file-name="Version.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/model/Version.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
+            <state relative-caret-position="200">
               <caret line="17" column="46" lean-forward="false" selection-start-line="17" selection-start-column="46" selection-end-line="17" selection-end-column="46" />
               <folding>
-                <element signature="imports" expanded="false" />
                 <element signature="method#Version#0;class#Version#0" expanded="false" />
                 <element signature="method#Version#1;class#Version#0" expanded="false" />
-                <element signature="e#459#460#0" expanded="false" />
-                <element signature="e#485#486#0" expanded="false" />
-                <element signature="e#523#524#0" expanded="false" />
-                <element signature="e#553#554#0" expanded="false" />
-                <element signature="e#592#593#0" expanded="false" />
-                <element signature="e#624#625#0" expanded="false" />
-                <element signature="e#677#678#0" expanded="false" />
-                <element signature="e#719#720#0" expanded="false" />
-                <element signature="e#775#776#0" expanded="false" />
-                <element signature="e#842#843#0" expanded="false" />
-                <element signature="e#885#886#0" expanded="false" />
-                <element signature="e#947#948#0" expanded="false" />
-                <element signature="e#981#982#0" expanded="false" />
-                <element signature="e#1011#1012#0" expanded="false" />
-                <element signature="e#1057#1058#0" expanded="false" />
-                <element signature="e#1095#1096#0" expanded="false" />
                 <element signature="method#display#0;class#Version#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CrawlingServiceApp.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/main/CrawlingServiceApp.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="11" column="44" lean-forward="false" selection-start-line="11" selection-start-column="44" selection-end-line="11" selection-end-column="44" />
+              <folding>
+                <element signature="e#352#353#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CrawlingServiceController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/main/CrawlingServiceController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="132" column="8" lean-forward="false" selection-start-line="132" selection-start-column="8" selection-end-line="132" selection-end-column="8" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -85,7 +79,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/parser/ParserTest.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="405">
-              <caret line="35" column="32" lean-forward="false" selection-start-line="35" selection-start-column="32" selection-end-line="35" selection-end-column="32" />
+              <caret line="33" column="32" lean-forward="false" selection-start-line="33" selection-start-column="32" selection-end-line="33" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="false" />
               </folding>
@@ -135,16 +129,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="VersionDAO.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/db/VersionDAO.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="44" lean-forward="false" selection-start-line="3" selection-start-column="44" selection-end-line="3" selection-end-column="44" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="RequiredAttributeMissingException.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/exception/RequiredAttributeMissingException.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -186,7 +170,6 @@
         <option value="$PROJECT_DIR$/src/main/java/model/Url.java" />
         <option value="$PROJECT_DIR$/src/main/java/main/CrawlingServiceApp.java" />
         <option value="$PROJECT_DIR$/src/main/java/db/VersionDAO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/main/CrawlingServiceController.java" />
         <option value="$PROJECT_DIR$/src/main/java/model/VersionSummary.java" />
         <option value="$PROJECT_DIR$/src/main/java/evaluateion/XDiff.java" />
         <option value="$PROJECT_DIR$/src/main/java/parser/LoopTest.java" />
@@ -195,6 +178,7 @@
         <option value="$PROJECT_DIR$/src/main/java/parser/ParserTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/parser/WebPageParser.java" />
         <option value="$PROJECT_DIR$/src/main/java/evaluateion/Evaluator.java" />
+        <option value="$PROJECT_DIR$/src/main/java/main/CrawlingServiceController.java" />
       </list>
     </option>
   </component>
@@ -951,10 +935,10 @@
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Application.ParserTest" />
-        <item index="1" class="java.lang.String" itemvalue="Application.ParallelTest" />
-        <item index="2" class="java.lang.String" itemvalue="Application.MultiplicationTest" />
-        <item index="3" class="java.lang.String" itemvalue="Application.LoopTest" />
-        <item index="4" class="java.lang.String" itemvalue="Spring Boot.CrawlingServiceApp" />
+        <item index="1" class="java.lang.String" itemvalue="Spring Boot.CrawlingServiceApp" />
+        <item index="2" class="java.lang.String" itemvalue="Application.ParallelTest" />
+        <item index="3" class="java.lang.String" itemvalue="Application.MultiplicationTest" />
+        <item index="4" class="java.lang.String" itemvalue="Application.LoopTest" />
       </list>
     </recent_temporary>
   </component>
@@ -994,12 +978,12 @@
       <workItem from="1506232082702" duration="47000" />
       <workItem from="1506253411815" duration="975000" />
       <workItem from="1506313752781" duration="10171000" />
-      <workItem from="1506437923585" duration="2034000" />
+      <workItem from="1506437923585" duration="3354000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="68743000" />
+    <option name="totallyTimeSpent" value="70063000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -1023,7 +1007,7 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2887755" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2887755" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959184" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33821735" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1306,25 +1290,8 @@
         <state relative-caret-position="195">
           <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="false" />
             <element signature="method#Version#0;class#Version#0" expanded="false" />
             <element signature="method#Version#1;class#Version#0" expanded="false" />
-            <element signature="e#459#460#0" expanded="false" />
-            <element signature="e#485#486#0" expanded="false" />
-            <element signature="e#523#524#0" expanded="false" />
-            <element signature="e#553#554#0" expanded="false" />
-            <element signature="e#592#593#0" expanded="false" />
-            <element signature="e#624#625#0" expanded="false" />
-            <element signature="e#677#678#0" expanded="false" />
-            <element signature="e#719#720#0" expanded="false" />
-            <element signature="e#775#776#0" expanded="false" />
-            <element signature="e#842#843#0" expanded="false" />
-            <element signature="e#885#886#0" expanded="false" />
-            <element signature="e#947#948#0" expanded="false" />
-            <element signature="e#981#982#0" expanded="false" />
-            <element signature="e#1011#1012#0" expanded="false" />
-            <element signature="e#1057#1058#0" expanded="false" />
-            <element signature="e#1095#1096#0" expanded="false" />
             <element signature="method#display#0;class#Version#0" expanded="false" />
           </folding>
         </state>
@@ -1341,20 +1308,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="15" column="5" lean-forward="false" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/main/CrawlingServiceController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-193">
-          <caret line="36" column="0" lean-forward="true" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/main/CrawlingServiceApp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="11" column="44" lean-forward="false" selection-start-line="11" selection-start-column="44" selection-end-line="11" selection-end-column="44" />
         </state>
       </provider>
     </entry>
@@ -1437,35 +1390,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/model/Version.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="17" column="46" lean-forward="false" selection-start-line="17" selection-start-column="46" selection-end-line="17" selection-end-column="46" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="method#Version#0;class#Version#0" expanded="false" />
-            <element signature="method#Version#1;class#Version#0" expanded="false" />
-            <element signature="e#459#460#0" expanded="false" />
-            <element signature="e#485#486#0" expanded="false" />
-            <element signature="e#523#524#0" expanded="false" />
-            <element signature="e#553#554#0" expanded="false" />
-            <element signature="e#592#593#0" expanded="false" />
-            <element signature="e#624#625#0" expanded="false" />
-            <element signature="e#677#678#0" expanded="false" />
-            <element signature="e#719#720#0" expanded="false" />
-            <element signature="e#775#776#0" expanded="false" />
-            <element signature="e#842#843#0" expanded="false" />
-            <element signature="e#885#886#0" expanded="false" />
-            <element signature="e#947#948#0" expanded="false" />
-            <element signature="e#981#982#0" expanded="false" />
-            <element signature="e#1011#1012#0" expanded="false" />
-            <element signature="e#1057#1058#0" expanded="false" />
-            <element signature="e#1095#1096#0" expanded="false" />
-            <element signature="method#display#0;class#Version#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/parser/MultiplicationTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
@@ -1505,7 +1429,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/parser/ParserTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
-          <caret line="35" column="32" lean-forward="false" selection-start-line="35" selection-start-column="32" selection-end-line="35" selection-end-column="32" />
+          <caret line="33" column="32" lean-forward="false" selection-start-line="33" selection-start-column="32" selection-end-line="33" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="false" />
           </folding>
@@ -1522,11 +1446,41 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/evaluateion/Evaluator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="596">
-          <caret line="142" column="111" lean-forward="false" selection-start-line="142" selection-start-column="111" selection-end-line="142" selection-end-column="111" />
+        <state relative-caret-position="429">
+          <caret line="85" column="39" lean-forward="false" selection-start-line="85" selection-start-column="39" selection-end-line="85" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/model/Version.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="17" column="46" lean-forward="false" selection-start-line="17" selection-start-column="46" selection-end-line="17" selection-end-column="46" />
+          <folding>
+            <element signature="method#Version#0;class#Version#0" expanded="false" />
+            <element signature="method#Version#1;class#Version#0" expanded="false" />
+            <element signature="method#display#0;class#Version#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/main/CrawlingServiceApp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="11" column="44" lean-forward="false" selection-start-line="11" selection-start-column="44" selection-end-line="11" selection-end-column="44" />
+          <folding>
+            <element signature="e#352#353#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/main/CrawlingServiceController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="132" column="8" lean-forward="false" selection-start-line="132" selection-start-column="8" selection-end-line="132" selection-end-column="8" />
+          <folding />
         </state>
       </provider>
     </entry>
