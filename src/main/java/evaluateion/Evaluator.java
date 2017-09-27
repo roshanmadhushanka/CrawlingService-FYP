@@ -116,22 +116,27 @@ public class Evaluator {
         return count;
     }
 
-    public static void diff(HashMap<String, ArrayList<ArrayList<String>>> oldVersion,
+    public static HashMap<String, int[]> diff(HashMap<String, ArrayList<ArrayList<String>>> oldVersion,
                             HashMap<String, ArrayList<ArrayList<String>>> newVersion) {
 
+        /*
+            Measure difference between two versions based on the cosine similarity measure
+         */
+
+        // Get tags for each version
         Set<String> tagSet1 = oldVersion.keySet();
         Set<String> tagSet2 = newVersion.keySet();
 
+        // Get common tags for both versions
         ArrayList<String> commonTags = getUnion(new ArrayList<String>(tagSet1), new ArrayList<String>(tagSet2));
 
-        long startTime = System.nanoTime();
+        // Store difference measurements
+        HashMap<String, int[]> diffInfo = new HashMap<>();
 
         for(String tag: commonTags) {
-            System.out.println(tag);
-            System.out.println(Arrays.toString(tagContentDiff(oldVersion.get(tag), newVersion.get(tag))));
+            diffInfo.put(tag, tagContentDiff(oldVersion.get(tag), newVersion.get(tag)));
         }
 
-        long endTime = System.nanoTime();
-        System.out.println("Took "+(endTime - startTime) + " ns");
+        return diffInfo;
     }
 }

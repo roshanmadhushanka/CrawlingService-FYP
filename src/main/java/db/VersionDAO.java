@@ -88,17 +88,17 @@ public class VersionDAO {
         return versionList;
     }
 
-    public List<Version> readTimeStamp(Version version){
+    public List<Document> readTimeStamp(Version version){
         Document versionObject = toDocument(version);
 
-        List<Version> versionList = new ArrayList<>();
+        List<Document> versionList = new ArrayList<>();
 
         try {
             FindIterable<Document> cursor = versionCollection.find(versionObject);
             for (Document obj: cursor
                     ) {
-                Version versionObj = new Version();
-                versionObj.setTimestamp(obj.getDate("timestamp"));
+                Document versionObj = new Document();
+                versionObj.put("timestamp", obj.getDate("timestamp"));
                 versionList.add(versionObj);
             }
         } catch (MongoSocketOpenException e) {
