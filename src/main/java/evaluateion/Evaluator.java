@@ -67,6 +67,7 @@ public class Evaluator {
     }
 
     private static double cosineSimilarity(ArrayList<String> list1, ArrayList<String> list2) {
+
         double result;
 
         ArrayList<String> commonList = getUnion(list1, list2);
@@ -98,8 +99,6 @@ public class Evaluator {
 
             for (int j = 0; j < newVersion.size(); j++) {
                 if(cosineSimilarity(oldVersion.get(i), newVersion.get(j)) > 0.9){
-                    // If almost similar content found
-
                     // Match count
                     count[0]++;
                     found = true;
@@ -134,7 +133,9 @@ public class Evaluator {
         HashMap<String, int[]> diffInfo = new HashMap<>();
 
         for(String tag: commonTags) {
-            diffInfo.put(tag, tagContentDiff(oldVersion.get(tag), newVersion.get(tag)));
+            int[] tagDiff = tagContentDiff(oldVersion.get(tag), newVersion.get(tag));
+            System.out.println(Arrays.toString(tagDiff));
+            diffInfo.put(tag, tagDiff);
         }
 
         return diffInfo;
