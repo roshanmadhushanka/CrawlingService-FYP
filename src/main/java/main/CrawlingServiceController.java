@@ -54,19 +54,11 @@ public class CrawlingServiceController {
 
         String response = null;
 
-        HtmlUnitDriver driver = new HtmlUnitDriver(BrowserVersion.FIREFOX_45);
-
-        // Allow to load JavaScripts
-        driver.setJavascriptEnabled(true);
-
-        // Navigate to URL
-        driver.get(url.toString());
+        // Setup crawler
+        Crawler crawler = new Crawler();
 
         // Read page content
-        String content = driver.getPageSource();
-
-        // Close driver
-        driver.quit();
+        String content = crawler.crawl(url.toString());
 
         // Create version
         Version version = new Version(url.toString(), content);
@@ -143,6 +135,10 @@ public class CrawlingServiceController {
 
     @RequestMapping(value = "/getDifference", method = RequestMethod.POST)
     public ResponseEntity<String> getDifference(@RequestBody DifferenceRequest diffRequest){
+        /*
+            Get difference between two versions of a same web page where version ID's are given
+         */
+
         String response = null;
 
         // Create version

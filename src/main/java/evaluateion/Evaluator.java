@@ -44,6 +44,10 @@ public class Evaluator {
     }
 
     private static int dotProduct(int[] arrayA, int[] arrayB){
+        /*
+            Calculate dot product between given two vectors
+         */
+
         int result = 0;
         assert(arrayA.length == arrayB.length);
 
@@ -55,6 +59,10 @@ public class Evaluator {
     }
 
     private static double modulus(int[] array){
+        /*
+            Measure modules of a vector
+         */
+
         double result = 0;
 
         for(int i=0; i<array.length; i++){
@@ -67,6 +75,9 @@ public class Evaluator {
     }
 
     private static double cosineSimilarity(ArrayList<String> list1, ArrayList<String> list2) {
+        /*
+            Measure cosine similarity between two word lists
+         */
 
         double result;
 
@@ -74,7 +85,7 @@ public class Evaluator {
         int[] vector1 = new int[commonList.size()];
         int[] vector2 = new int[commonList.size()];
 
-        for(int i=0; i<commonList.size(); i++) {
+        for(int i=0; i<commonList.size(); i++){
             vector1[i] = count(list1, commonList.get(i));
             vector2[i] = count(list2, commonList.get(i));
         }
@@ -86,21 +97,20 @@ public class Evaluator {
 
     private static int[] tagContentDiff(ArrayList<ArrayList<String>> oldVersion,
                                         ArrayList<ArrayList<String>> newVersion) {
-
         /*
             Compare new version with old version by iterating through content of new version
          */
 
         final int[] count = {0, 0};
 
-        IntStream.range(0, oldVersion.size()).parallel().forEach((int i) ->{
-
+        for(int i=0; i<oldVersion.size(); i++){
             boolean found = false;
 
             for (int j = 0; j < newVersion.size(); j++) {
                 if(cosineSimilarity(oldVersion.get(i), newVersion.get(j)) > 0.9){
                     // Match count
                     count[0]++;
+
                     found = true;
                     break;
                 }
@@ -110,14 +120,13 @@ public class Evaluator {
                 // Mismatch count
                 count[1]++;
             }
-        });
+        };
 
         return count;
     }
 
     public static HashMap<String, int[]> diff(HashMap<String, ArrayList<ArrayList<String>>> oldVersion,
                             HashMap<String, ArrayList<ArrayList<String>>> newVersion) {
-
         /*
             Measure difference between two versions based on the cosine similarity measure
          */
@@ -132,11 +141,15 @@ public class Evaluator {
         // Store difference measurements
         HashMap<String, int[]> diffInfo = new HashMap<>();
 
-        for(String tag: commonTags) {
-            int[] tagDiff = tagContentDiff(oldVersion.get(tag), newVersion.get(tag));
-            System.out.println(Arrays.toString(tagDiff));
-            diffInfo.put(tag, tagDiff);
-        }
+        final String[] tag = {null};
+        IntStream.range(0, commonTags.size()).parallel().forEach((int i) -> {
+            tag[0] = commonTags.get(i);
+            diffInfo.put(tag[0], tagContentDiff(oldVersion.get(tag[0]), newVersion.get(tag[0])));
+        });
+
+//        for(String tag: commonTags) {
+//            diffInfo.put(tag, tagContentDiff(oldVersion.get(tag), newVersion.get(tag)));
+//        }
 
         return diffInfo;
     }
