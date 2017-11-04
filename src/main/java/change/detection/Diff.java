@@ -10,9 +10,10 @@ import java.util.List;
  */
 public class Diff
 {
-    // Returns length of Longest Common Sub-sequence for X[0..m-1], Y[0..n-1]
-    public String[] diff(String X, String Y)
-    {
+    public String[] diff(String X, String Y){
+        /*
+            Returns length of Longest Common Sub-sequence for X[0..m-1], Y[0..n-1]
+        */
         int m = X.length();
         int n = Y.length();
         int[][] L = new int[m+1][n+1];

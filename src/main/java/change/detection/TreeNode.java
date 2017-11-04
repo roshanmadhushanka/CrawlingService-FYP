@@ -40,7 +40,10 @@ public class TreeNode{
     }
 
     public double cosineDistance(TreeNode node){
-        // checking
+        /*
+            Compute Cosine Distance from node to this
+        */
+        // checking whether the text inside the element is empty
         if(element.text().equals("") || node.getElement().text().equals(""))
             return -1;
         // end checking
@@ -50,6 +53,9 @@ public class TreeNode{
     }
 
     public List<TreeNode> getChildrenByTag(Tag tag){
+        /*
+            Return the list of children by the specific tag
+        */
         List<TreeNode> list = new ArrayList();
         for(TreeNode node: children){
             if(node.getElement().tag().equals(tag))
@@ -59,6 +65,9 @@ public class TreeNode{
     }
 
     public List<Tag> getChildTags(){
+        /*
+            Return the list of tags of children
+        */
         List<Tag> tags = new ArrayList();
         for(TreeNode node: children){
             if(!tags.contains(node.getElement().tag()))
@@ -68,6 +77,9 @@ public class TreeNode{
     }
 
     public TreeNode getChildById(long id){
+        /*
+            Recursively search and return the child with the given id
+        */
         if(this.id == id)
             return this;
         else{
@@ -83,6 +95,9 @@ public class TreeNode{
     }
 
     public long[] getChildIds(){
+       /*
+            Return the list of ids of children
+       */
        long[] ids = new long[children.size()];
        int count = 0;
        for(TreeNode node: children){

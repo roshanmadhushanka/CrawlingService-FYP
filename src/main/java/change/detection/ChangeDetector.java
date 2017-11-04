@@ -25,22 +25,10 @@ public class ChangeDetector {
         }
     }
 
-//    public static void main(String[] args) throws IOException {
-//        String html1 = readFile("/home/eranga/Desktop/file1");
-//        String html2 = readFile("/home/eranga/Desktop/file1000");
-//
-//        DOMTreeGenerator domTreeGenerator1 = new DOMTreeGenerator();
-//        TreeNode tree1 = domTreeGenerator1.createDOMTree(html1);
-//        DOMTreeGenerator domTreeGenerator2 = new DOMTreeGenerator();
-//        TreeNode tree2 = domTreeGenerator2.createDOMTree(html2);
-//
-//        detectChanges(tree1, tree2);
-//        processNodes(tree1, tree2);
-//        domTreeGenerator1.writeFile("/home/eranga/Desktop/CNNbefore.html");
-//        domTreeGenerator2.writeFile("/home/eranga/Desktop/CNNafter.html");
-//    }
-
     public String[] processChanges(String html1, String html2){
+        /*
+            Returns the input html strings with patches
+        */
         DOMTreeGenerator domTreeGenerator1 = new DOMTreeGenerator();
         TreeNode tree1 = domTreeGenerator1.createDOMTree(html1);
         DOMTreeGenerator domTreeGenerator2 = new DOMTreeGenerator();
@@ -52,21 +40,28 @@ public class ChangeDetector {
     }
 
     private void detectChanges(TreeNode root1, TreeNode root2){
+        /*
+            Detect changes of the DOM structures
+        */
+        // If roots are equal do nothing
         if(root1.cosineDistance(root2) == 0.0)
             return;
         else if(!root1.getChildren().isEmpty() && !root2.getChildren().isEmpty()){
             Set<Tag> childTags = new HashSet(root1.getChildTags());
             childTags.addAll(root2.getChildTags());
+            // Loop for all different type of tags in both the roots
             for(Tag tag: childTags) {
                 List<TreeNode> children1 = root1.getChildrenByTag(tag);
                 List<TreeNode> children2 = root2.getChildrenByTag(tag);
+                // check if root1 has children with the particular tag type
                 if(children1.isEmpty()){
                     children2.forEach(element -> newlyAdded.add(element.getId()));
                     continue;
+                // check if root2 has children with the particular tag type
                 } else if(children2.isEmpty()){
                     children1.forEach(element -> deleted.add(element.getId()));
                     continue;
-                } else{
+                } else {
                     int n = children1.size();
                     int m = children2.size();
                     double[][] distanceMatrix = new double[n][m];
@@ -141,6 +136,9 @@ public class ChangeDetector {
     }
 
     private void processNodes(TreeNode root1, TreeNode root2){
+        /*
+            Highlight texts of deleted, newly added and updated nodes
+        */
         for(int i=0; i<deleted.size(); i++){
             TreeNode node = root1.getChildById(deleted.get(i));
             highlight(node, Color.RED);
@@ -160,6 +158,9 @@ public class ChangeDetector {
     }
 
     private void highlight(TreeNode node, Color color){
+        /*
+            Highlight a whole node
+        */
         if(!node.getChildren().isEmpty()){
             List<TreeNode> children = node.getChildren();
             children.forEach(child -> highlight(child, color));
@@ -170,6 +171,9 @@ public class ChangeDetector {
     }
 
     private String readFile(String fileName) throws IOException {
+        /*
+            Read a file from the HDD and return as a string
+        */
         BufferedReader br = new BufferedReader(new FileReader(fileName));
         try {
             StringBuilder sb = new StringBuilder();

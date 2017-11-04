@@ -18,6 +18,9 @@ public class DOMTreeGenerator {
     TreeNode tree;
 
     public TreeNode createDOMTree(String html){
+        /*
+            Construct DOMTreeGenerator using a string
+        */
         doc = Jsoup.parse(html);
         Element root = doc.body();
         tree = new TreeNode(idCounter++, root);
@@ -25,8 +28,10 @@ public class DOMTreeGenerator {
         return tree;
     }
 
-    // recursively add children to parents and create the DOM Tree
     private TreeNode addChildren(TreeNode parent){
+        /*
+            Recursively add children to parents and create the DOM Tree
+        */
         Element parentElement = parent.getElement();
         if(!parentElement.children().isEmpty()){
             List<Element> childElements = parentElement.children();
@@ -40,10 +45,16 @@ public class DOMTreeGenerator {
     }
 
     public String printTree(){
+        /*
+            Print the tree
+        */
         return doc.toString();
     }
 
     public void writeFile(String fileName) throws IOException {
+        /*
+            Write the html file to a file in HDD
+        */
         BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
         writer.write(doc.toString());
         writer.close();
