@@ -121,4 +121,17 @@ public class VersionDAO {
         }
     }
 
+    public long count(Document version) {
+        long count = -1;
+        try {
+            count = versionCollection.count(version);
+        } catch (MongoSocketOpenException e) {
+            LOGGER.severe(DB_ERROR);
+        } catch (Exception e) {
+            LOGGER.severe(ERROR);
+        }
+
+        return count;
+    }
+
 }

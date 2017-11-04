@@ -4,11 +4,10 @@ import org.eclipse.jetty.util.BlockingArrayQueue;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
-
-import java.util.*;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.stream.IntStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Queue;
+import java.util.StringTokenizer;
 
 /**
  * Created by roshanalwis on 8/29/17.

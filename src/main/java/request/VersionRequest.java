@@ -1,12 +1,12 @@
 package request;
 
 import model.Version;
-
 import java.sql.Timestamp;
 
 /**
  * Created by roshanalwis on 9/26/17.
  */
+
 public class VersionRequest {
     private String url;
     private Timestamp timestamp;
