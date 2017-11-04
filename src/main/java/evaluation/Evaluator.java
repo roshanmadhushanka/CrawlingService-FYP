@@ -1,4 +1,4 @@
-package evaluateion;
+package evaluation;
 
 import java.util.*;
 import java.util.stream.IntStream;
@@ -6,6 +6,7 @@ import java.util.stream.IntStream;
 /**
  * Created by roshanalwis on 9/2/17.
  */
+
 public class Evaluator {
     private static ArrayList<String> getUnion(ArrayList<String> list1, ArrayList<String> list2) {
         /*
@@ -103,14 +104,16 @@ public class Evaluator {
 
         final int[] count = {0, 0};
 
-        for(int i=0; i<oldVersion.size(); i++){
-            boolean found = false;
+        boolean found = false;
+        double similarityValue = 0.0;
 
+        for(int i=0; i<oldVersion.size(); i++){
+            found = false;
             for (int j = 0; j < newVersion.size(); j++) {
-                if(cosineSimilarity(oldVersion.get(i), newVersion.get(j)) > 0.9){
+                similarityValue = cosineSimilarity(oldVersion.get(i), newVersion.get(j));
+                if(similarityValue > 0.9){
                     // Match count
                     count[0]++;
-
                     found = true;
                     break;
                 }
@@ -146,10 +149,6 @@ public class Evaluator {
             tag[0] = commonTags.get(i);
             diffInfo.put(tag[0], tagContentDiff(oldVersion.get(tag[0]), newVersion.get(tag[0])));
         });
-
-//        for(String tag: commonTags) {
-//            diffInfo.put(tag, tagContentDiff(oldVersion.get(tag), newVersion.get(tag)));
-//        }
 
         return diffInfo;
     }

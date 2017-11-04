@@ -3,15 +3,12 @@ package main;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.gargoylesoftware.htmlunit.BrowserVersion;
 import db.VersionDAO;
-import evaluateion.Evaluator;
-import model.Difference;
+import evaluation.Evaluator;
 import model.Url;
 import model.User;
 import model.Version;
 import org.bson.Document;
-import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,10 +19,8 @@ import org.springframework.web.client.RestTemplate;
 import parser.WebPageParser;
 import request.DifferenceRequest;
 import request.VersionRequest;
-
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -55,7 +50,7 @@ public class CrawlingServiceController {
         String response = null;
 
         // Setup crawler
-        Crawler crawler = new Crawler();
+        Crawler crawler = Crawler.getCrawler();
 
         // Read page content
         String content = crawler.crawl(url.toString());
@@ -68,6 +63,32 @@ public class CrawlingServiceController {
         versionDAO.create(version);
 
         response = "Success";
+
+        return new ResponseEntity<String>(response, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/getVersionCount", method = RequestMethod.POST)
+    public ResponseEntity<String> getVersionCount(@RequestBody VersionRequest versionRequest){
+        /*
+            Get summary of version
+         */
+
+        String response = null;
+
+        // Create connection to the db
+        VersionDAO versionDAO = new VersionDAO();
+
+        // Create transferable object
+        Document versionCount = new Document();
+        versionCount.put("count", versionDAO.count(versionCount));
+
+        // Convert result into JSON
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            response = objectMapper.writeValueAsString(versionCount);
+        } catch (JsonProcessingException e) {
+
+        }
 
         return new ResponseEntity<String>(response, HttpStatus.OK);
     }
@@ -94,6 +115,26 @@ public class CrawlingServiceController {
 
         return new ResponseEntity<String>(response, HttpStatus.OK);
     }
+
+    @RequestMapping(value = "/getHtmlVersion", method = RequestMethod.POST)
+    public ResponseEntity<String> getHtmlVersion(@RequestBody VersionRequest versionRequest) {
+        /*
+            Get HTML version
+         */
+
+        String response = null;
+
+        // Load versions
+        VersionDAO versionDAO = new VersionDAO();
+        List<Version> versionList = versionDAO.read(versionRequest.toVersion());
+
+        if(versionList.size() > 0) {
+            response = versionList.get(0).getContent();
+        }
+
+        return new ResponseEntity<String>(response, HttpStatus.OK);
+    }
+
 
     @RequestMapping(value = "/getTimeStamp", method = RequestMethod.POST)
     public ResponseEntity<String> getVersionMetaData(@RequestBody VersionRequest versionRequest){
