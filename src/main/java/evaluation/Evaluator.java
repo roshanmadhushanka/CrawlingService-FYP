@@ -1,4 +1,4 @@
-package evaluateion;
+package evaluation;
 
 import java.util.*;
 import java.util.stream.IntStream;

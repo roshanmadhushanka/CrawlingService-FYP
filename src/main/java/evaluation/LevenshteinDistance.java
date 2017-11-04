@@ -1,4 +1,4 @@
-package evaluateion;
+package evaluation;
 
 public class LevenshteinDistance {
     private static int minimum(int a, int b, int c) {

@@ -1,4 +1,4 @@
-package evaluateion;
+package evaluation;
 
 import javafx.util.Pair;
 import org.jsoup.Jsoup;

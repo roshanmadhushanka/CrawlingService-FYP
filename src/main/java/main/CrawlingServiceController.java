@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import db.VersionDAO;
-import evaluateion.Evaluator;
+import evaluation.Evaluator;
 import model.Url;
 import model.User;
 import model.Version;

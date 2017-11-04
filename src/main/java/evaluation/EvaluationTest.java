@@ -1,4 +1,4 @@
-package evaluateion;
+package evaluation;
 
 import db.VersionDAO;
 import model.Version;

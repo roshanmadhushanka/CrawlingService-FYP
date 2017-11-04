@@ -1,7 +1,7 @@
 package model;
 
 import db.VersionDAO;
-import evaluateion.Evaluator;
+import evaluation.Evaluator;
 import org.bson.Document;
 import parser.WebPageParser;
 
